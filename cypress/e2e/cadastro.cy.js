@@ -20,6 +20,18 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
         cy.url().should('include', 'dashboard')
     });
 
+    it('Deve fazer o cadastro com sucesso, usando o comando', () => {
+        let email = `teste${Date.now()}@email.com`
+        cy.preencherCadastro(
+            'Leticia Monteiro',
+            email,
+            '11987654321',
+            'Senha123',
+            'Senha123'
+        )
+        cy.url().should('include', 'dashboard')
+    });
+
     it('Deve fazer o cadastro com sucesso, usando Faker', () => {
         let name = faker.person.fullName()
         let email = faker.internet.email() 
