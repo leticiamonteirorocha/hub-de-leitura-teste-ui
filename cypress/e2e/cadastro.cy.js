@@ -8,6 +8,10 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
         cadastroPage.visitarPaginaCadastro()
     });
 
+    afterEach(() => {
+        cy.screenshot()
+    });
+
     it('Deve fazer o cadastro com sucesso - usando função JS', () => {
         let email = `teste${Date.now()}@email.com`
         cy.get('#name').type('Leticia Monteiro')
@@ -54,7 +58,7 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
         cy.url().should('include', 'dashboard')
     });
 
-    it.only('Deve validar mensagem ao tentar cadastrar sem preencher nome', () => {
+    it('Deve validar mensagem ao tentar cadastrar sem preencher nome', () => {
         cadastroPage.preencherCadastro('', 'sofia@teste.com', '11123456789', 'senha123', 'senha123')
         cy.get(':nth-child(1) > .invalid-feedback').should('contain', 'Nome deve ter pelo menos 2 caracteres')
     });
